@@ -8,6 +8,7 @@ const { validarCampos } = require("../middlewares/validar-campos");
 const {
   getUsuarios,
   miUsuarioDetalles,
+  miUsuarioRENIECApi,
   miUsuarioSUNATApi,
   crearUsuario,
   actualizarUsuario,
@@ -37,6 +38,8 @@ router.post(
 router.get("/me/:id", [validarJWT], miUsuarioDetalles);
 
 router.get("/sunat/:id", [validarJWT], miUsuarioSUNATApi);
+
+router.get("/reniec/:id", [validarJWT], miUsuarioRENIECApi);
 
 router.put(
   "/:id",

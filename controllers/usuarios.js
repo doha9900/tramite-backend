@@ -29,6 +29,31 @@ const miUsuarioDetalles = async (req, res) => {
   });
 };
 
+const miUsuarioRENIECApi = async (req, res) => {
+  const id = req.params.id;
+  const me = await Usuario.findById(id);
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + process.env.APIS_NET_TOKEN,
+  };
+  axios
+    .get("https://api.apis.net.pe/v1/dni?numero=" + me.DNI)
+    .then(async function (response) {
+      res.json({
+        ok: true,
+        message: response.data,
+      });
+    })
+    .catch(function (error) {
+      // handle error
+      console.log("No se encontraron resultados", error);
+      res.json({
+        ok: false,
+        message: "DNI Inválido.",
+      });
+    });
+};
+
 const miUsuarioSUNATApi = async (req, res) => {
   const id = req.params.id;
   const me = await Usuario.findById(id);
@@ -178,6 +203,7 @@ const borrarUsuario = async (req, res = response) => {
 module.exports = {
   getUsuarios,
   miUsuarioDetalles,
+  miUsuarioRENIECApi,
   miUsuarioSUNATApi,
   crearUsuario,
   actualizarUsuario,
