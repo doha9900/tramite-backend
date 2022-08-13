@@ -49,7 +49,7 @@ const miUsuarioRENIECApi = async (req, res) => {
       console.log("No se encontraron resultados", error);
       res.json({
         ok: false,
-        message: "DNI Inválido.",
+        message: "DNI Inválido o no se encontraron resultados.",
       });
     });
 };
@@ -74,7 +74,7 @@ const miUsuarioSUNATApi = async (req, res) => {
       console.log("No se encontraron resultados", error);
       res.json({
         ok: false,
-        message: "RUC Inválido.",
+        message: "RUC Inválido o no se encontraron resultados.",
       });
     });
 };
