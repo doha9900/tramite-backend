@@ -20,7 +20,7 @@ const router = Router();
 
 router.get("/", validarJWT, getTransportes);
 
-router.get("/placa/:id", validarJWT, getTransporteFromPlacaAPI);
+router.get("/placa/:num_placa", validarJWT, getTransporteFromPlacaAPI);
 
 router.post("/", [validarCampos], crearTransporte);
 

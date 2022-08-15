@@ -32,13 +32,12 @@ const getTransporteById = async (req, res = response) => {
 };
 
 const getTransporteFromPlacaAPI = async (req, res = response) => {
-  const id = req.params.id;
+  const num_placa = req.params.num_placa;
 
   try {
-    const transporte = await Transporte.findById(id).populate("usuario");
     axios
       .get(
-        `https://www.placaapi.pe/api/reg.asmx/CheckPeru?RegistrationNumber=${transporte.numero_placa}&username=${process.env.NICKNAME}`
+        `https://www.placaapi.pe/api/reg.asmx/CheckPeru?RegistrationNumber=${num_placa}&username=${process.env.NICKNAME}`
       )
       .then(async function (response) {
         let data = JSON.parse(

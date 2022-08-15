@@ -10,6 +10,8 @@ const {
   miUsuarioDetalles,
   miUsuarioRENIECApi,
   miUsuarioSUNATApi,
+  miUsuarioRENIECApiPorDNI,
+  miUsuarioSUNATApiPorRUC,
   crearUsuario,
   actualizarUsuario,
   borrarUsuario,
@@ -40,6 +42,10 @@ router.get("/me/:id", [validarJWT], miUsuarioDetalles);
 router.get("/sunat/:id", [validarJWT], miUsuarioSUNATApi);
 
 router.get("/reniec/:id", [validarJWT], miUsuarioRENIECApi);
+
+router.get("/reniec/dni/:dni", [validarJWT], miUsuarioRENIECApiPorDNI);
+
+router.get("/sunat/ruc/:ruc", [validarJWT], miUsuarioSUNATApiPorRUC);
 
 router.put(
   "/:id",

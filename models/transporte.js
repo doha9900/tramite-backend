@@ -18,7 +18,15 @@ const TransporteSchema = Schema(
       type: String,
       requred: true,
     }, // nacional, internacional
-    usuario: {
+    dni_usuario: {
+      type: String,
+      required: true,
+    },
+    ruc_empresa: {
+      type: String,
+      required: true,
+    },
+    codigo_evaluador: {
       required: true,
       type: Schema.Types.ObjectId,
       ref: "Usuario",

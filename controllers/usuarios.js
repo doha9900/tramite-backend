@@ -79,6 +79,54 @@ const miUsuarioSUNATApi = async (req, res) => {
     });
 };
 
+const miUsuarioRENIECApiPorDNI = async (req, res) => {
+  const DNI = req.params.dni;
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + process.env.APIS_NET_TOKEN,
+  };
+  axios
+    .get("https://api.apis.net.pe/v1/dni?numero=" + DNI)
+    .then(async function (response) {
+      res.json({
+        ok: true,
+        message: response.data,
+      });
+    })
+    .catch(function (error) {
+      // handle error
+      console.log("No se encontraron resultados", error);
+      res.json({
+        ok: false,
+        message: "DNI Inválido o no se encontraron resultados.",
+      });
+    });
+};
+
+const miUsuarioSUNATApiPorRUC = async (req, res) => {
+  const RUC = req.params.ruc;
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + process.env.APIS_NET_TOKEN,
+  };
+  axios
+    .get("https://api.apis.net.pe/v1/ruc?numero=" + RUC)
+    .then(async function (response) {
+      res.json({
+        ok: true,
+        message: response.data,
+      });
+    })
+    .catch(function (error) {
+      // handle error
+      console.log("No se encontraron resultados", error);
+      res.json({
+        ok: false,
+        message: "RUC Inválido o no se encontraron resultados.",
+      });
+    });
+};
+
 const crearUsuario = async (req, res = response) => {
   const { email, password } = req.body;
 
@@ -205,6 +253,8 @@ module.exports = {
   miUsuarioDetalles,
   miUsuarioRENIECApi,
   miUsuarioSUNATApi,
+  miUsuarioRENIECApiPorDNI,
+  miUsuarioSUNATApiPorRUC,
   crearUsuario,
   actualizarUsuario,
   borrarUsuario,
